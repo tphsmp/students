@@ -2,6 +2,7 @@ package students;
 
 import epam.task.Student;
 import epam.task.StudentGroup;
+import javafx.scene.transform.Scale;
 
 import java.util.Scanner;
 
@@ -11,12 +12,7 @@ public class Main {
 
         StudentGroup g1 = new StudentGroup();
 
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Задайте количество студентов в группе");
-        int groupValue = scan.nextInt();
-
-        while (groupValue > 0) {
-
+        for (; ; ) {
             Scanner scan2 = new Scanner(System.in);
             System.out.println("Введите ФИО студента");
             String newStudent = scan2.nextLine();
@@ -33,11 +29,15 @@ public class Main {
 
             g1.addStudent(stud);
 
-            groupValue--;
+            System.out.println("Хотите добавить еще одного студента? (да/нет)");
+            Scanner scan5 = new Scanner(System.in);
+            String answer = scan5.nextLine();
+            if (answer.equalsIgnoreCase("нет")) {
+                g1.printAllStudents();
+                return;
+            }
 
         }
-
-        g1.printAllStudents();
 
     }
 }
